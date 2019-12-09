@@ -36,7 +36,7 @@ private:
 	GLuint buffer;
 	GLuint ibo;
 	GLsizei no_of_points;
-
+	
 	std::vector<glm::vec3> points;
 	std::vector<glm::vec3> hull;
 	std::vector<glm::vec3> innerPoints;

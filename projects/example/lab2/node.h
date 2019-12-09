@@ -30,6 +30,10 @@ struct Leaf : public Node
 	Leaf(glm::vec3 c, glm::vec3 ci, glm::vec3 ci1, Node* parent) : 
 		c(c), ci(ci), ci1(ci1), Node(parent) {};
 
+	void insert(glm::vec3 point)
+	{
+		
+	};
 };
 
 struct TNode : public Node

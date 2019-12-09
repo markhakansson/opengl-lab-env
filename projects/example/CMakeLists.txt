@@ -2,12 +2,12 @@
 # example project
 #--------------------------------------------------------------------------
 
-FILE(GLOB example_headers code/*.h)
-FILE(GLOB example_sources code/*.cc)
+FILE(GLOB app_headers lab3/*.h)
+FILE(GLOB app_sources lab3/*.cc)
 
-SET(files_example ${example_headers} ${example_sources})
-SOURCE_GROUP("example" FILES ${files_example})
+SET(files_example ${app_headers} ${app_sources})
+SOURCE_GROUP("app" FILES ${files_app})
 
-ADD_EXECUTABLE(example ${files_example})
-TARGET_LINK_LIBRARIES(example core render)
-ADD_DEPENDENCIES(example core render)
+ADD_EXECUTABLE(app ${files_app})
+TARGET_LINK_LIBRARIES(app core render)
+ADD_DEPENDENCIES(app core render)
