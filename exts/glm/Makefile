@@ -80,14 +80,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/mark/Documents/opengl-lab-env && $(CMAKE_COMMAND) -E cmake_progress_start /home/mark/Documents/opengl-lab-env/CMakeFiles /home/mark/Documents/opengl-lab-env/exts/glew/CMakeFiles/progress.marks
-	cd /home/mark/Documents/opengl-lab-env && $(MAKE) -f CMakeFiles/Makefile2 exts/glew/all
+	cd /home/mark/Documents/opengl-lab-env && $(CMAKE_COMMAND) -E cmake_progress_start /home/mark/Documents/opengl-lab-env/CMakeFiles /home/mark/Documents/opengl-lab-env/exts/glm/CMakeFiles/progress.marks
+	cd /home/mark/Documents/opengl-lab-env && $(MAKE) -f CMakeFiles/Makefile2 exts/glm/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/mark/Documents/opengl-lab-env/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/mark/Documents/opengl-lab-env && $(MAKE) -f CMakeFiles/Makefile2 exts/glew/clean
+	cd /home/mark/Documents/opengl-lab-env && $(MAKE) -f CMakeFiles/Makefile2 exts/glm/clean
 .PHONY : clean
 
 # The main clean target
@@ -97,12 +97,12 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/mark/Documents/opengl-lab-env && $(MAKE) -f CMakeFiles/Makefile2 exts/glew/preinstall
+	cd /home/mark/Documents/opengl-lab-env && $(MAKE) -f CMakeFiles/Makefile2 exts/glm/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/mark/Documents/opengl-lab-env && $(MAKE) -f CMakeFiles/Makefile2 exts/glew/preinstall
+	cd /home/mark/Documents/opengl-lab-env && $(MAKE) -f CMakeFiles/Makefile2 exts/glm/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
@@ -111,46 +111,46 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-exts/glew/CMakeFiles/glew.dir/rule:
-	cd /home/mark/Documents/opengl-lab-env && $(MAKE) -f CMakeFiles/Makefile2 exts/glew/CMakeFiles/glew.dir/rule
-.PHONY : exts/glew/CMakeFiles/glew.dir/rule
+exts/glm/CMakeFiles/glm_static.dir/rule:
+	cd /home/mark/Documents/opengl-lab-env && $(MAKE) -f CMakeFiles/Makefile2 exts/glm/CMakeFiles/glm_static.dir/rule
+.PHONY : exts/glm/CMakeFiles/glm_static.dir/rule
 
 # Convenience name for target.
-glew: exts/glew/CMakeFiles/glew.dir/rule
+glm_static: exts/glm/CMakeFiles/glm_static.dir/rule
 
-.PHONY : glew
+.PHONY : glm_static
 
 # fast build rule for target.
-glew/fast:
-	cd /home/mark/Documents/opengl-lab-env && $(MAKE) -f exts/glew/CMakeFiles/glew.dir/build.make exts/glew/CMakeFiles/glew.dir/build
-.PHONY : glew/fast
+glm_static/fast:
+	cd /home/mark/Documents/opengl-lab-env && $(MAKE) -f exts/glm/CMakeFiles/glm_static.dir/build.make exts/glm/CMakeFiles/glm_static.dir/build
+.PHONY : glm_static/fast
 
-src/glew.o: src/glew.c.o
+detail/glm.o: detail/glm.cpp.o
 
-.PHONY : src/glew.o
+.PHONY : detail/glm.o
 
 # target to build an object file
-src/glew.c.o:
-	cd /home/mark/Documents/opengl-lab-env && $(MAKE) -f exts/glew/CMakeFiles/glew.dir/build.make exts/glew/CMakeFiles/glew.dir/src/glew.c.o
-.PHONY : src/glew.c.o
+detail/glm.cpp.o:
+	cd /home/mark/Documents/opengl-lab-env && $(MAKE) -f exts/glm/CMakeFiles/glm_static.dir/build.make exts/glm/CMakeFiles/glm_static.dir/detail/glm.cpp.o
+.PHONY : detail/glm.cpp.o
 
-src/glew.i: src/glew.c.i
+detail/glm.i: detail/glm.cpp.i
 
-.PHONY : src/glew.i
+.PHONY : detail/glm.i
 
 # target to preprocess a source file
-src/glew.c.i:
-	cd /home/mark/Documents/opengl-lab-env && $(MAKE) -f exts/glew/CMakeFiles/glew.dir/build.make exts/glew/CMakeFiles/glew.dir/src/glew.c.i
-.PHONY : src/glew.c.i
+detail/glm.cpp.i:
+	cd /home/mark/Documents/opengl-lab-env && $(MAKE) -f exts/glm/CMakeFiles/glm_static.dir/build.make exts/glm/CMakeFiles/glm_static.dir/detail/glm.cpp.i
+.PHONY : detail/glm.cpp.i
 
-src/glew.s: src/glew.c.s
+detail/glm.s: detail/glm.cpp.s
 
-.PHONY : src/glew.s
+.PHONY : detail/glm.s
 
 # target to generate assembly for a file
-src/glew.c.s:
-	cd /home/mark/Documents/opengl-lab-env && $(MAKE) -f exts/glew/CMakeFiles/glew.dir/build.make exts/glew/CMakeFiles/glew.dir/src/glew.c.s
-.PHONY : src/glew.c.s
+detail/glm.cpp.s:
+	cd /home/mark/Documents/opengl-lab-env && $(MAKE) -f exts/glm/CMakeFiles/glm_static.dir/build.make exts/glm/CMakeFiles/glm_static.dir/detail/glm.cpp.s
+.PHONY : detail/glm.cpp.s
 
 # Help Target
 help:
@@ -159,11 +159,11 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
-	@echo "... glew"
+	@echo "... glm_static"
 	@echo "... edit_cache"
-	@echo "... src/glew.o"
-	@echo "... src/glew.i"
-	@echo "... src/glew.s"
+	@echo "... detail/glm.o"
+	@echo "... detail/glm.i"
+	@echo "... detail/glm.s"
 .PHONY : help
 
 

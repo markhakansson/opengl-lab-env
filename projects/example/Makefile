@@ -80,14 +80,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/mark/Documents/opengl-lab-env && $(CMAKE_COMMAND) -E cmake_progress_start /home/mark/Documents/opengl-lab-env/CMakeFiles /home/mark/Documents/opengl-lab-env/exts/glew/CMakeFiles/progress.marks
-	cd /home/mark/Documents/opengl-lab-env && $(MAKE) -f CMakeFiles/Makefile2 exts/glew/all
+	cd /home/mark/Documents/opengl-lab-env && $(CMAKE_COMMAND) -E cmake_progress_start /home/mark/Documents/opengl-lab-env/CMakeFiles /home/mark/Documents/opengl-lab-env/projects/example/CMakeFiles/progress.marks
+	cd /home/mark/Documents/opengl-lab-env && $(MAKE) -f CMakeFiles/Makefile2 projects/example/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/mark/Documents/opengl-lab-env/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/mark/Documents/opengl-lab-env && $(MAKE) -f CMakeFiles/Makefile2 exts/glew/clean
+	cd /home/mark/Documents/opengl-lab-env && $(MAKE) -f CMakeFiles/Makefile2 projects/example/clean
 .PHONY : clean
 
 # The main clean target
@@ -97,12 +97,12 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/mark/Documents/opengl-lab-env && $(MAKE) -f CMakeFiles/Makefile2 exts/glew/preinstall
+	cd /home/mark/Documents/opengl-lab-env && $(MAKE) -f CMakeFiles/Makefile2 projects/example/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/mark/Documents/opengl-lab-env && $(MAKE) -f CMakeFiles/Makefile2 exts/glew/preinstall
+	cd /home/mark/Documents/opengl-lab-env && $(MAKE) -f CMakeFiles/Makefile2 projects/example/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
@@ -111,46 +111,73 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-exts/glew/CMakeFiles/glew.dir/rule:
-	cd /home/mark/Documents/opengl-lab-env && $(MAKE) -f CMakeFiles/Makefile2 exts/glew/CMakeFiles/glew.dir/rule
-.PHONY : exts/glew/CMakeFiles/glew.dir/rule
+projects/example/CMakeFiles/example.dir/rule:
+	cd /home/mark/Documents/opengl-lab-env && $(MAKE) -f CMakeFiles/Makefile2 projects/example/CMakeFiles/example.dir/rule
+.PHONY : projects/example/CMakeFiles/example.dir/rule
 
 # Convenience name for target.
-glew: exts/glew/CMakeFiles/glew.dir/rule
+example: projects/example/CMakeFiles/example.dir/rule
 
-.PHONY : glew
+.PHONY : example
 
 # fast build rule for target.
-glew/fast:
-	cd /home/mark/Documents/opengl-lab-env && $(MAKE) -f exts/glew/CMakeFiles/glew.dir/build.make exts/glew/CMakeFiles/glew.dir/build
-.PHONY : glew/fast
+example/fast:
+	cd /home/mark/Documents/opengl-lab-env && $(MAKE) -f projects/example/CMakeFiles/example.dir/build.make projects/example/CMakeFiles/example.dir/build
+.PHONY : example/fast
 
-src/glew.o: src/glew.c.o
+code/exampleapp.o: code/exampleapp.cc.o
 
-.PHONY : src/glew.o
+.PHONY : code/exampleapp.o
 
 # target to build an object file
-src/glew.c.o:
-	cd /home/mark/Documents/opengl-lab-env && $(MAKE) -f exts/glew/CMakeFiles/glew.dir/build.make exts/glew/CMakeFiles/glew.dir/src/glew.c.o
-.PHONY : src/glew.c.o
+code/exampleapp.cc.o:
+	cd /home/mark/Documents/opengl-lab-env && $(MAKE) -f projects/example/CMakeFiles/example.dir/build.make projects/example/CMakeFiles/example.dir/code/exampleapp.cc.o
+.PHONY : code/exampleapp.cc.o
 
-src/glew.i: src/glew.c.i
+code/exampleapp.i: code/exampleapp.cc.i
 
-.PHONY : src/glew.i
+.PHONY : code/exampleapp.i
 
 # target to preprocess a source file
-src/glew.c.i:
-	cd /home/mark/Documents/opengl-lab-env && $(MAKE) -f exts/glew/CMakeFiles/glew.dir/build.make exts/glew/CMakeFiles/glew.dir/src/glew.c.i
-.PHONY : src/glew.c.i
+code/exampleapp.cc.i:
+	cd /home/mark/Documents/opengl-lab-env && $(MAKE) -f projects/example/CMakeFiles/example.dir/build.make projects/example/CMakeFiles/example.dir/code/exampleapp.cc.i
+.PHONY : code/exampleapp.cc.i
 
-src/glew.s: src/glew.c.s
+code/exampleapp.s: code/exampleapp.cc.s
 
-.PHONY : src/glew.s
+.PHONY : code/exampleapp.s
 
 # target to generate assembly for a file
-src/glew.c.s:
-	cd /home/mark/Documents/opengl-lab-env && $(MAKE) -f exts/glew/CMakeFiles/glew.dir/build.make exts/glew/CMakeFiles/glew.dir/src/glew.c.s
-.PHONY : src/glew.c.s
+code/exampleapp.cc.s:
+	cd /home/mark/Documents/opengl-lab-env && $(MAKE) -f projects/example/CMakeFiles/example.dir/build.make projects/example/CMakeFiles/example.dir/code/exampleapp.cc.s
+.PHONY : code/exampleapp.cc.s
+
+code/main.o: code/main.cc.o
+
+.PHONY : code/main.o
+
+# target to build an object file
+code/main.cc.o:
+	cd /home/mark/Documents/opengl-lab-env && $(MAKE) -f projects/example/CMakeFiles/example.dir/build.make projects/example/CMakeFiles/example.dir/code/main.cc.o
+.PHONY : code/main.cc.o
+
+code/main.i: code/main.cc.i
+
+.PHONY : code/main.i
+
+# target to preprocess a source file
+code/main.cc.i:
+	cd /home/mark/Documents/opengl-lab-env && $(MAKE) -f projects/example/CMakeFiles/example.dir/build.make projects/example/CMakeFiles/example.dir/code/main.cc.i
+.PHONY : code/main.cc.i
+
+code/main.s: code/main.cc.s
+
+.PHONY : code/main.s
+
+# target to generate assembly for a file
+code/main.cc.s:
+	cd /home/mark/Documents/opengl-lab-env && $(MAKE) -f projects/example/CMakeFiles/example.dir/build.make projects/example/CMakeFiles/example.dir/code/main.cc.s
+.PHONY : code/main.cc.s
 
 # Help Target
 help:
@@ -159,11 +186,14 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
-	@echo "... glew"
+	@echo "... example"
 	@echo "... edit_cache"
-	@echo "... src/glew.o"
-	@echo "... src/glew.i"
-	@echo "... src/glew.s"
+	@echo "... code/exampleapp.o"
+	@echo "... code/exampleapp.i"
+	@echo "... code/exampleapp.s"
+	@echo "... code/main.o"
+	@echo "... code/main.i"
+	@echo "... code/main.s"
 .PHONY : help
 
 

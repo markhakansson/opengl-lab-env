@@ -10,8 +10,6 @@
 #include <glm/glm.hpp>
 #include "render/window.h"
 #include <vector>
-#include "node.h"
-
 namespace Example
 {
 class ExampleApp : public Core::App
@@ -21,29 +19,26 @@ public:
 	ExampleApp();
 	/// destructor
 	~ExampleApp();
-	void calculateInnerPoints();
-	int prevKeyPress;
 
 	/// open app
 	bool Open();
 	/// run app
 	void Run();
 
+	std::vector<glm::vec3> KochSnowflake(int depth, glm::vec3 p0, glm::vec3 p1, glm::vec3 p2);
+	
 private:
+
 	GLuint program;
 	GLuint vertexShader;
 	GLuint pixelShader;
-	GLuint buffer;
+	GLuint triangle;
 	GLuint ibo;
 	GLsizei no_of_points;
 
-	std::vector<glm::vec3> points;
-	std::vector<glm::vec3> hull;
-	std::vector<glm::vec3> innerPoints;
-	std::vector<glm::vec3> edges;
-	Node* tree;
-	std::string filename;
-
+	int depth;
+	std::vector<glm::vec3> vertices;
+		
 	Display::Window* window;
 };
 } // namespace Example
