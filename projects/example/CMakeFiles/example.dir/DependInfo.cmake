@@ -4,8 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/mark/Documents/opengl-lab-env/projects/example/code/exampleapp.cc" "/home/mark/Documents/opengl-lab-env/projects/example/CMakeFiles/example.dir/code/exampleapp.cc.o"
-  "/home/mark/Documents/opengl-lab-env/projects/example/code/main.cc" "/home/mark/Documents/opengl-lab-env/projects/example/CMakeFiles/example.dir/code/main.cc.o"
+  "/home/mark/Documents/opengl-lab-env/projects/example/lab3/app.cc" "/home/mark/Documents/opengl-lab-env/projects/example/CMakeFiles/example.dir/lab3/app.cc.o"
+  "/home/mark/Documents/opengl-lab-env/projects/example/lab3/main.cc" "/home/mark/Documents/opengl-lab-env/projects/example/CMakeFiles/example.dir/lab3/main.cc.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

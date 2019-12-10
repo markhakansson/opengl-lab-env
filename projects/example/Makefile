@@ -125,59 +125,59 @@ example/fast:
 	cd /home/mark/Documents/opengl-lab-env && $(MAKE) -f projects/example/CMakeFiles/example.dir/build.make projects/example/CMakeFiles/example.dir/build
 .PHONY : example/fast
 
-code/exampleapp.o: code/exampleapp.cc.o
+lab3/app.o: lab3/app.cc.o
 
-.PHONY : code/exampleapp.o
-
-# target to build an object file
-code/exampleapp.cc.o:
-	cd /home/mark/Documents/opengl-lab-env && $(MAKE) -f projects/example/CMakeFiles/example.dir/build.make projects/example/CMakeFiles/example.dir/code/exampleapp.cc.o
-.PHONY : code/exampleapp.cc.o
-
-code/exampleapp.i: code/exampleapp.cc.i
-
-.PHONY : code/exampleapp.i
-
-# target to preprocess a source file
-code/exampleapp.cc.i:
-	cd /home/mark/Documents/opengl-lab-env && $(MAKE) -f projects/example/CMakeFiles/example.dir/build.make projects/example/CMakeFiles/example.dir/code/exampleapp.cc.i
-.PHONY : code/exampleapp.cc.i
-
-code/exampleapp.s: code/exampleapp.cc.s
-
-.PHONY : code/exampleapp.s
-
-# target to generate assembly for a file
-code/exampleapp.cc.s:
-	cd /home/mark/Documents/opengl-lab-env && $(MAKE) -f projects/example/CMakeFiles/example.dir/build.make projects/example/CMakeFiles/example.dir/code/exampleapp.cc.s
-.PHONY : code/exampleapp.cc.s
-
-code/main.o: code/main.cc.o
-
-.PHONY : code/main.o
+.PHONY : lab3/app.o
 
 # target to build an object file
-code/main.cc.o:
-	cd /home/mark/Documents/opengl-lab-env && $(MAKE) -f projects/example/CMakeFiles/example.dir/build.make projects/example/CMakeFiles/example.dir/code/main.cc.o
-.PHONY : code/main.cc.o
+lab3/app.cc.o:
+	cd /home/mark/Documents/opengl-lab-env && $(MAKE) -f projects/example/CMakeFiles/example.dir/build.make projects/example/CMakeFiles/example.dir/lab3/app.cc.o
+.PHONY : lab3/app.cc.o
 
-code/main.i: code/main.cc.i
+lab3/app.i: lab3/app.cc.i
 
-.PHONY : code/main.i
+.PHONY : lab3/app.i
 
 # target to preprocess a source file
-code/main.cc.i:
-	cd /home/mark/Documents/opengl-lab-env && $(MAKE) -f projects/example/CMakeFiles/example.dir/build.make projects/example/CMakeFiles/example.dir/code/main.cc.i
-.PHONY : code/main.cc.i
+lab3/app.cc.i:
+	cd /home/mark/Documents/opengl-lab-env && $(MAKE) -f projects/example/CMakeFiles/example.dir/build.make projects/example/CMakeFiles/example.dir/lab3/app.cc.i
+.PHONY : lab3/app.cc.i
 
-code/main.s: code/main.cc.s
+lab3/app.s: lab3/app.cc.s
 
-.PHONY : code/main.s
+.PHONY : lab3/app.s
 
 # target to generate assembly for a file
-code/main.cc.s:
-	cd /home/mark/Documents/opengl-lab-env && $(MAKE) -f projects/example/CMakeFiles/example.dir/build.make projects/example/CMakeFiles/example.dir/code/main.cc.s
-.PHONY : code/main.cc.s
+lab3/app.cc.s:
+	cd /home/mark/Documents/opengl-lab-env && $(MAKE) -f projects/example/CMakeFiles/example.dir/build.make projects/example/CMakeFiles/example.dir/lab3/app.cc.s
+.PHONY : lab3/app.cc.s
+
+lab3/main.o: lab3/main.cc.o
+
+.PHONY : lab3/main.o
+
+# target to build an object file
+lab3/main.cc.o:
+	cd /home/mark/Documents/opengl-lab-env && $(MAKE) -f projects/example/CMakeFiles/example.dir/build.make projects/example/CMakeFiles/example.dir/lab3/main.cc.o
+.PHONY : lab3/main.cc.o
+
+lab3/main.i: lab3/main.cc.i
+
+.PHONY : lab3/main.i
+
+# target to preprocess a source file
+lab3/main.cc.i:
+	cd /home/mark/Documents/opengl-lab-env && $(MAKE) -f projects/example/CMakeFiles/example.dir/build.make projects/example/CMakeFiles/example.dir/lab3/main.cc.i
+.PHONY : lab3/main.cc.i
+
+lab3/main.s: lab3/main.cc.s
+
+.PHONY : lab3/main.s
+
+# target to generate assembly for a file
+lab3/main.cc.s:
+	cd /home/mark/Documents/opengl-lab-env && $(MAKE) -f projects/example/CMakeFiles/example.dir/build.make projects/example/CMakeFiles/example.dir/lab3/main.cc.s
+.PHONY : lab3/main.cc.s
 
 # Help Target
 help:
@@ -188,12 +188,12 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... example"
 	@echo "... edit_cache"
-	@echo "... code/exampleapp.o"
-	@echo "... code/exampleapp.i"
-	@echo "... code/exampleapp.s"
-	@echo "... code/main.o"
-	@echo "... code/main.i"
-	@echo "... code/main.s"
+	@echo "... lab3/app.o"
+	@echo "... lab3/app.i"
+	@echo "... lab3/app.s"
+	@echo "... lab3/main.o"
+	@echo "... lab3/main.i"
+	@echo "... lab3/main.s"
 .PHONY : help
 
 
