@@ -14,7 +14,7 @@ Mesh::Mesh(Vertices vertexData)
     // VBO
     glGenBuffers(1, &vbo);
     glBindBuffer(GL_ARRAY_BUFFER, vbo);
-    glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(Vec4), vertices.data(), GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(vec4), vertices.data(), GL_STATIC_DRAW);
     glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 0, 0);
 
     // IBO
@@ -31,7 +31,10 @@ Mesh::Mesh(Vertices vertexData)
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
 
-Mesh::~Mesh() {}
+void Mesh::bindVAO()
+{
+    glBindVertexArray(vao);
+}
 
 // Checks if any vectors has the same coordinates. Returns a vector with indices
 // to those vertices.

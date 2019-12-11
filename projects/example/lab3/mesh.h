@@ -9,11 +9,11 @@ class Mesh
 {
 public:
     Mesh(Vertices vertices);
-    ~Mesh();
-    
+    void bindVAO();  
     Vertices vertices;
     Indices indices;
 
+private:
     /* VBO is basically an array of data buffers */
     GLuint vbo;
     GLuint ibo;

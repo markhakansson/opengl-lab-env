@@ -4,6 +4,7 @@
 projects/example/CMakeFiles/example.dir/lab3/app.cc.o: projects/example/lab3/app.cc
 
 projects/example/CMakeFiles/example.dir/lab3/main.cc.o: projects/example/lab3/main.cc
+projects/example/CMakeFiles/example.dir/lab3/main.cc.o: projects/example/lab3/shader.h
 projects/example/CMakeFiles/example.dir/lab3/main.cc.o: projects/example/lab3/types.h
 projects/example/CMakeFiles/example.dir/lab3/main.cc.o: exts/glew/include/GL/glew.h
 

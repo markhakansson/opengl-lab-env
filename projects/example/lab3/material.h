@@ -7,13 +7,8 @@
 class Material
 {
 public:
-    Material();
-    ~Material();
-    ShaderProgram* shaderProgram;
-    virtual void ApplyMaterial() = 0;
-
-private:
-
+    virtual void applyMaterial() = 0;
+    ShaderProgram *shaderProgram;
 };
 
 #endif

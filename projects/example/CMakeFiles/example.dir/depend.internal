@@ -5,5 +5,6 @@ projects/example/CMakeFiles/example.dir/lab3/app.cc.o
  /home/mark/Documents/opengl-lab-env/projects/example/lab3/app.cc
 projects/example/CMakeFiles/example.dir/lab3/main.cc.o
  /home/mark/Documents/opengl-lab-env/projects/example/lab3/main.cc
+ /home/mark/Documents/opengl-lab-env/projects/example/lab3/shader.h
  /home/mark/Documents/opengl-lab-env/projects/example/lab3/types.h
  exts/glew/include/GL/glew.h

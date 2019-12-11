@@ -3,14 +3,19 @@
 
 #include <GL/glew.h>
 #include "shader.h"
+#include "types.h"
 
 class ShaderProgram
 {
 public:
-    ShaderProgram();
+    ShaderProgram(Shaders shaders);
     ~ShaderProgram();
-    Shader* shader;
-    GLuint program;
+    Shaders shaders;
+    GLuint programID;
+    void addShaderResource(Shader *shader);
+    void init();
+    void activate();
+private:
 };
 
 #endif

@@ -24,6 +24,7 @@ public:
 private:
     ShaderType type;
     GLuint shaderHandle; // handle to shaderprogram
+    void readCompileShaderSource(const GLchar *pathToShader);
 };
 
 #endif

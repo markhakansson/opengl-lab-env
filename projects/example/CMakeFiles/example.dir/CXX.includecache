@@ -12,6 +12,18 @@ types.h
 iostream
 -
 
+/home/mark/Documents/opengl-lab-env/projects/example/lab3/shader.h
+GL/glew.h
+-
+string
+-
+fstream
+-
+sstream
+-
+iostream
+-
+
 /home/mark/Documents/opengl-lab-env/projects/example/lab3/types.h
 vector
 -
@@ -19,6 +31,8 @@ glm/glm.hpp
 -
 GL/glew.h
 -
+shader.h
+/home/mark/Documents/opengl-lab-env/projects/example/lab3/shader.h
 
 exts/glew/include/GL/glew.h
 stddef.h

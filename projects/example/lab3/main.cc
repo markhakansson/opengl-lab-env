@@ -33,12 +33,12 @@ Indices createIndices(Vertices vertices)
 int main(int argc, const char **argv)
 {
     Vertices vertices = {
-        Vec4(1, 0, 0, 0),
-        Vec4(1, 0, 0, 0),
-        Vec4(1, 1, 1, 1),
-        Vec4(0, 4, 2, 1),
-        Vec4(0, 4, 2, 1),
-        Vec4(0, 4, 2, 0)};
+        vec4(1, 0, 0, 0),
+        vec4(1, 0, 0, 0),
+        vec4(1, 1, 1, 1),
+        vec4(0, 4, 2, 1),
+        vec4(0, 4, 2, 1),
+        vec4(0, 4, 2, 0)};
     Indices indices = createIndices(vertices);
     std::cout << "Indices size: " << indices.size() << std::endl;
     for (int i = 0; i < indices.size(); i++)

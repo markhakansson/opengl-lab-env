@@ -4,17 +4,17 @@
 #include "mesh.h"
 #include "material.h"
 #include <glm/mat4x4.hpp>
+#include "types.h"
 
 class GraphicsNode
 {
 public:
-    Mesh* mesh;
-    Material* material;
-    glm::mat4 trasform;
-    
-    GraphicsNode();
-    ~GraphicsNode();
-    void Draw();
+    Mesh *mesh;
+    Material *material;
+    mat4 transform;
+
+    GraphicsNode(Mesh *mesh, Material *material, mat4 transform);
+    void draw();
 };
 
 #endif
