@@ -19,6 +19,7 @@
 #include <sstream>
 #include <algorithm>
 #include <tuple>
+
 //#include "triangulation.h"
 
 const GLchar *vs =
@@ -266,6 +267,7 @@ bool ExampleApp::Open()
 
 				for(int i = 1; i < innerPoints.size(); i++)
 				{
+					std::cout << "** Inserting to tree..." << std::endl;
 					tree->insert(innerPoints[i]);
 				}
 

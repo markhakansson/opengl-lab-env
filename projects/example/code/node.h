@@ -5,6 +5,7 @@
 #include <GL/glew.h>
 #include <vector>
 #include "tools.h"
+#include <iostream>
 
 class Node
 {
@@ -13,7 +14,7 @@ public:
 
 	Node(Node* parent) : parent(parent) {};
 	virtual std::vector<glm::vec3> getTriangles() = 0;
-	virtual Node *insert(glm::vec3 p);
+	virtual Node *insert(glm::vec3 p) = 0;
 };
 
 class BNode : public Node
@@ -27,7 +28,7 @@ public:
 	BNode(glm::vec3 c, glm::vec3 ci, glm::vec3 cm, glm::vec3 cj, Node* parent) :
 		c(c), ci(ci), cm(cm), cj(cj), left(nullptr), right(nullptr), Node(parent) {};
 
-	std::vector<glm::vec3> getTriangles()
+	virtual std::vector<glm::vec3> getTriangles()
 	{
 		std::vector<glm::vec3> triangles;
 
@@ -40,27 +41,26 @@ public:
 		return triangles;
 	}
 
-	Node *insert(glm::vec3 p) 
+	virtual Node *insert(glm::vec3 p) 
 	{	
-		Node* ptr = nullptr;
 		// left of c->cm
-		if(crossp(c, cm, p) > 0)
+		if(cross(c, cm, p) < 0)
 		{
 			Node *tmp = left->insert(p);
 			if(tmp != nullptr) 
 			{
-				ptr = tmp;
+				left = tmp;
 			}
 		}
-		else if(crossp(c, cm, p) < 0)
+		else if(cross(c, cm, p) > 0)
 		{
 			Node *tmp = right->insert(p);
 			if(tmp != nullptr)
 			{
-				ptr = tmp;
+				right = tmp;
 			}
 		}
-		return ptr;
+		return nullptr;
 	}
 };
 
@@ -75,7 +75,7 @@ public:
 	//std::vector<glm::vec3> getTriangles();
 	TNode(glm::vec3 c, glm::vec3 ci, glm::vec3 cm, glm::vec3 cj, Node* parent) :
 		c(c), ci(ci), cm(cm), cj(cj), Node(parent) {};
-	std::vector<glm::vec3> getTriangles()
+	virtual std::vector<glm::vec3> getTriangles()
 	{
 		std::vector<glm::vec3> triangles;
 
@@ -91,63 +91,62 @@ public:
 		return triangles;
 	}	
 
-	Node *insert(glm::vec3 p) 
+	virtual Node *insert(glm::vec3 p) 
 	{
-		Node *ptr = nullptr;
 		// left of c->ci 
-		if(crossp(c, ci, p) > 0)
+		if(cross(c, ci, p) > 0)
 		{	
 			// left of c->cm
-			if(crossp(c, cm, p) > 0) 
+			if(cross(c, cm, p) > 0) 
 			{	
 				// right of c->cj
-				if(crossp(c, cj, p) < 0)
+				if(cross(c, cj, p) < 0)
 				{
 					Node *tmp = mid->insert(p);
 					if(tmp != nullptr)
 					{
-						ptr = tmp;
+						mid = tmp;
 					}
 				}
 			} 
 			// right of c->cm
-			else if(crossp(c, cm, p) < 0) 
+			else if(cross(c, cm, p) < 0) 
 			{
 				Node *tmp = left->insert(p);
 				if(tmp != nullptr)
 				{
-					ptr = tmp;
+					left = tmp;
 				}				
 			}
 		} 
 		// right of c->ci
-		else if(crossp(c, ci, p) < 0)	
+		else if(cross(c, ci, p) < 0)	
 		{	
 			// right of c->cj
-			if(crossp(c, cj, p) < 0)
+			if(cross(c, cj, p) < 0)
 			{	
 				// left of c->cm
-				if(crossp(c, cm, p) > 0)
+				if(cross(c, cm, p) > 0)
 				{
 					Node *tmp = mid->insert(p);
 					if(tmp != nullptr)
 					{
-						ptr = tmp;
+						mid = tmp;
 					}
 				}
 			} 
 			// left of c->cj
-			else if(crossp(c, cj, p) > 0)
+			else if(cross(c, cj, p) > 0)
 			{
 				Node *tmp = right->insert(p);
 				if(tmp != nullptr)
 				{
-					ptr = tmp;
+					right = tmp;
 				}
 			}
 		}
 
-		return ptr;
+		return nullptr;
 
 	}
 };
@@ -162,7 +161,7 @@ public:
 	//std::vector<glm::vec3> getTriangles();
 	Leaf(glm::vec3 c, glm::vec3 ci, glm::vec3 ci1, Node* parent) : 
 		c(c), ci(ci), ci1(ci1), Node(parent) {};
-	std::vector<glm::vec3> getTriangles()
+	virtual std::vector<glm::vec3> getTriangles()
 	{
 		std::vector<glm::vec3> triangle;
 		triangle.insert(triangle.end(), c);
@@ -171,8 +170,9 @@ public:
 		return triangle;
 	}
 
-	Node *insert(glm::vec3 p) 
+	virtual Node *insert(glm::vec3 p) 
 	{	
+		std::cout << "@@ Inside a leaf!" << std::endl;
 		TNode *t = new TNode(p, c, ci, ci1, this->parent);
 		Leaf *l1 = new Leaf(p, c, ci, t);
 		Leaf *l2 = new Leaf(p, ci, ci1, t);
