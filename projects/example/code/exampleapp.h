@@ -40,7 +40,7 @@ private:
 	std::vector<glm::vec3> points;
 	std::vector<glm::vec3> hull;
 	std::vector<glm::vec3> innerPoints;
-	std::vector<glm::vec3> edges;
+	std::vector<glm::vec3> triangles;
 	Node* tree;
 	std::string filename;
 

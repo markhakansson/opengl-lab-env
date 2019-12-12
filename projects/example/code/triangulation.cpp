@@ -108,15 +108,6 @@ Node *buildTree(glm::vec3 c, std::vector<glm::vec3> vertices, Node *parent)
 	}
 }
 
-void searchTree(glm::vec3 point, Node *tree) 
-{
-
-}
-
 void triangleSoup(Node *tree)
-{
-}
-
-void treeSearch()
 {
 }

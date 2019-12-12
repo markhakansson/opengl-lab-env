@@ -4,6 +4,7 @@
 projects/example/CMakeFiles/example.dir/code/exampleapp.cc.o: projects/example/code/exampleapp.cc
 projects/example/CMakeFiles/example.dir/code/exampleapp.cc.o: projects/example/code/exampleapp.h
 projects/example/CMakeFiles/example.dir/code/exampleapp.cc.o: projects/example/code/node.h
+projects/example/CMakeFiles/example.dir/code/exampleapp.cc.o: projects/example/code/tools.h
 projects/example/CMakeFiles/example.dir/code/exampleapp.cc.o: engine/config.h
 projects/example/CMakeFiles/example.dir/code/exampleapp.cc.o: engine/core/app.h
 projects/example/CMakeFiles/example.dir/code/exampleapp.cc.o: engine/render/window.h
@@ -13,6 +14,7 @@ projects/example/CMakeFiles/example.dir/code/exampleapp.cc.o: exts/glfw/include/
 projects/example/CMakeFiles/example.dir/code/main.cc.o: projects/example/code/exampleapp.h
 projects/example/CMakeFiles/example.dir/code/main.cc.o: projects/example/code/main.cc
 projects/example/CMakeFiles/example.dir/code/main.cc.o: projects/example/code/node.h
+projects/example/CMakeFiles/example.dir/code/main.cc.o: projects/example/code/tools.h
 projects/example/CMakeFiles/example.dir/code/main.cc.o: engine/config.h
 projects/example/CMakeFiles/example.dir/code/main.cc.o: engine/core/app.h
 projects/example/CMakeFiles/example.dir/code/main.cc.o: engine/render/window.h
