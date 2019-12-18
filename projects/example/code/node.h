@@ -43,23 +43,30 @@ public:
 
 	virtual Node *insert(glm::vec3 p) 
 	{	
-		// left of c->cm
+		std::cout << "===== BNODE =====" << std::endl;
+		std::cout << "@BNODE: Inside BNODE!" << std::endl;
+		// right of c->cm goto left subtree
 		if(cross(c, cm, p) < 0)
 		{
+			std::cout << "@BNODE: Inserting to left child..." << std::endl;
 			Node *tmp = left->insert(p);
 			if(tmp != nullptr) 
 			{
+				std::cout << "@BNODE: Changing left child to new..." << std::endl;
 				left = tmp;
 			}
 		}
+		// left of c->cm goto right subtree
 		else if(cross(c, cm, p) > 0)
 		{
+			std::cout << "@BNODE: Inserting to right child..." << std::endl;
 			Node *tmp = right->insert(p);
 			if(tmp != nullptr)
 			{
+				std::cout << "@BNODE: Changing right child to new..." << std::endl;
 				right = tmp;
 			}
-		}
+		}				
 		return nullptr;
 	}
 };
@@ -92,7 +99,14 @@ public:
 	}	
 
 	virtual Node *insert(glm::vec3 p) 
-	{
+	{	
+		std::cout << "===== TNODE =====" << std::endl;
+		std::cout << "@TNODE: Inside ternary node!" << std::endl;
+		std::cout << "c: (" << c.x << ", " << c.y << ")" << std::endl;
+		std::cout << "ci: (" << ci.x << ", " << ci.y << ")" << std::endl;
+		std::cout << "cm: (" << cm.x << ", " << cm.y << ")" << std::endl;
+		std::cout << "cj: (" << cj.x << ", " << cj.y << ")" << std::endl;
+
 		// left of c->ci 
 		if(cross(c, ci, p) > 0)
 		{	
@@ -102,9 +116,11 @@ public:
 				// right of c->cj
 				if(cross(c, cj, p) < 0)
 				{
+					std::cout << "@TNODE: Inserting to mid child..." << std::endl;					
 					Node *tmp = mid->insert(p);
 					if(tmp != nullptr)
 					{
+						std::cout << "@TNODE: Changing mid child to new..." << std::endl;
 						mid = tmp;
 					}
 				}
@@ -112,9 +128,11 @@ public:
 			// right of c->cm
 			else if(cross(c, cm, p) < 0) 
 			{
+				std::cout << "@TNODE: Inserting to left child..." << std::endl;					
 				Node *tmp = left->insert(p);
 				if(tmp != nullptr)
 				{
+					std::cout << "@TNODE: Changing left child to new..." << std::endl;
 					left = tmp;
 				}				
 			}
@@ -128,9 +146,11 @@ public:
 				// left of c->cm
 				if(cross(c, cm, p) > 0)
 				{
+					std::cout << "@TNODE: Inserting to mid child..." << std::endl;					
 					Node *tmp = mid->insert(p);
 					if(tmp != nullptr)
 					{
+						std::cout << "@TNODE: Changing mid child to new..." << std::endl;
 						mid = tmp;
 					}
 				}
@@ -138,11 +158,27 @@ public:
 			// left of c->cj
 			else if(cross(c, cj, p) > 0)
 			{
+				std::cout << "@TNODE: Inserting to mid child..." << std::endl;					
 				Node *tmp = right->insert(p);
 				if(tmp != nullptr)
 				{
+					std::cout << "@TNODE: Changing right child to new..." << std::endl;
 					right = tmp;
 				}
+			}
+		} 
+		// on c->ci
+		else if(cross(c, ci, p) == 0) 
+		{
+			if(cross(c, cj, p) < 0 || cross(c, cm, p) > 0) 
+			{	
+				std::cout << "@TNODE: Inserting to mid child..." << std::endl;					
+				Node *tmp = mid->insert(p);
+				if(tmp != nullptr)
+				{
+					std::cout << "@TNODE: Changing mid child to new..." << std::endl;
+					mid = tmp;
+				}				
 			}
 		}
 
@@ -172,7 +208,8 @@ public:
 
 	virtual Node *insert(glm::vec3 p) 
 	{	
-		std::cout << "@@ Inside a leaf!" << std::endl;
+		std::cout << "===== @LEAF =====" << std::endl;
+		std::cout << "@LEAF: Inside a leaf!" << std::endl;
 		TNode *t = new TNode(p, c, ci, ci1, this->parent);
 		Leaf *l1 = new Leaf(p, c, ci, t);
 		Leaf *l2 = new Leaf(p, ci, ci1, t);

@@ -184,6 +184,8 @@ std::vector<glm::vec3> readInputFile(std::string filename)
 		vectors.insert(vectors.end(), vec);
 	}
 
+	// sortPoints(vectors);
+
 	return vectors;
 }
 
@@ -198,18 +200,22 @@ std::vector<glm::vec3> generateRandomPoints(int noPoints)
 {
 	std::vector<glm::vec3> vertices;
 
+	std::cout << "$$ Point generation: $$" << std::endl;
+
 	for (int i = 0; i < noPoints; i++)
 	{
 		float x = generateFloat(-1, 1);
 		float y = generateFloat(-1, 1);
 
-		std::cout << "X: " << x << " Y: " << y << std::endl;
+		std::cout << x << " " << y << std::endl;
 
 		glm::vec3 vec = glm::vec3(x, y, 0.0f);
 		vertices.insert(vertices.end(), vec);
 	}
 
-	std::cout << "# Points generated: " << vertices.size() << std::endl;
+	std::cout << "$$ Points generated: " << vertices.size() << " $$" << std::endl;
+
+	// sortPoints(vertices);
 
 	return vertices;
 }
@@ -228,6 +234,16 @@ void ExampleApp::calculateInnerPoints()
 			}
 		}
 	}
+	
+	sortPoints(innerPoints);
+
+	std::cout << "=============================" << std::endl;
+	for(int i = 0; i < innerPoints.size(); i++)
+	{
+		glm::vec3 vec = innerPoints[i];
+		std::cout << "(" << vec.x << ", " << vec.y << ")" << std::endl;
+	}
+	std::cout << "=============================" << std::endl;
 }
 
 //------------------------------------------------------------------------------
