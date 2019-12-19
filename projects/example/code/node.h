@@ -251,8 +251,14 @@ public:
 		std::vector<glm::vec3> triangle;
 		triangle.insert(triangle.end(), c);
 		triangle.insert(triangle.end(), ci);
+		
+		triangle.insert(triangle.end(), ci);
 		triangle.insert(triangle.end(), ci1);
 		
+		triangle.insert(triangle.end(), ci1);
+		triangle.insert(triangle.end(), c);
+
+
 		std::cout << "#### Printing triangle ####" << std::endl;
 		std::cout << "c: (" << c.x << ", " << c.y << ")" << std::endl;
 		std::cout << "ci: (" << ci.x << ", " << ci.y << ")" << std::endl;

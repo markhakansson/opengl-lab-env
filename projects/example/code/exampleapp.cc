@@ -296,7 +296,11 @@ bool ExampleApp::Open()
 				}
 
 				this->triangles = tree->getTriangles();
-				std::cout << triangles.size() << std::endl;
+				std::cout << "Triangles size: " << triangles.size() << std::endl;
+				for(int i = 0; i < triangles.size(); i++)
+				{
+					std::cout << "(" << triangles[i].x << ", " << triangles[i].y << ")" << std::endl; 
+				}
 			}
 		} 
 		else if (key == GLFW_KEY_P && action == GLFW_PRESS)
@@ -424,7 +428,7 @@ void ExampleApp::Run()
 
 			glBindBuffer(GL_ARRAY_BUFFER, this->buffer);
 			glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL); // point
-			glDrawArrays(GL_LINE_STRIP, 0, triangles.size());
+			glDrawArrays(GL_LINES, 0, triangles.size());
 			glBindBuffer(GL_ARRAY_BUFFER, 0);
 		}
 		this->window->SwapBuffers();
