@@ -71,7 +71,7 @@ void sortPoints(std::vector<glm::vec3> &points)
 /**
  *  Calculates the convext hull with Andrew's algorithm.
  */
-std::vector<glm::vec3> convexHull(std::vector<glm::vec3> points)
+std::vector<glm::vec3> convexHull(std::vector<glm::vec3> &points)
 {
 
 	if (points.size() <= 3)
@@ -235,7 +235,7 @@ void ExampleApp::calculateInnerPoints()
 		}
 	}
 	
-	sortPoints(innerPoints);
+	//sortPoints(innerPoints);
 
 	std::cout << "=============================" << std::endl;
 	for(int i = 0; i < innerPoints.size(); i++)
@@ -259,7 +259,11 @@ bool ExampleApp::Open()
 		if (key == GLFW_KEY_I && action == GLFW_PRESS)
 		{
 			this->points = readInputFile(this->filename);
-			this->hull = convexHull(this->points);
+			
+			std::vector<glm::vec3> hullPoints = this->points;
+			this->hull = convexHull(hullPoints);
+
+			//this->hull = convexHull(this->points);
 
 		// 'random' generate random points
 		}
@@ -269,7 +273,11 @@ bool ExampleApp::Open()
 			std::getline(std::cin, line);
 			int noPoints = std::stoi(line);
 			this->points = generateRandomPoints(noPoints);
-			this->hull = convexHull(this->points);
+			
+			std::vector<glm::vec3> hullPoints = this->points;
+			this->hull = convexHull(hullPoints);			
+
+			//this->hull = convexHull(this->points);
 		}
 		// triangulate
 		else if (key == GLFW_KEY_T && action == GLFW_PRESS)
