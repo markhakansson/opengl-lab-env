@@ -109,6 +109,12 @@ std::vector<glm::vec3> convexHull(std::vector<glm::vec3> &points)
 	
 	lowerHull.insert(lowerHull.end(), upperHull.begin(), upperHull.end());
 
+	std::cout << "===== @HULL =====" << std::endl;
+	for(int i = 0; i < lowerHull.size(); i ++)
+	{
+		std::cout << "(" << lowerHull[i].x << ", " << lowerHull[i].y << ")" << std::endl;
+	}
+
 	return lowerHull;
 }
 
@@ -131,10 +137,16 @@ Node *buildTree(glm::vec3 c, std::vector<glm::vec3> vertices, Node *parent)
 		int median = vertices.size() / 2;
 		BNode *b = new BNode(c, vertices[0], vertices[median], vertices[vertices.size() - 1], parent);
 
+		std::cout << "..BNODE median point is (" << vertices[median].x << ", " << vertices[median].y << ")" << std::endl;
+
 		b->left = buildTree(c, std::vector<glm::vec3>(vertices.begin(), vertices.begin() + median + 1), b);
 		b->right = buildTree(c, std::vector<glm::vec3>(vertices.begin() + median, vertices.end()), b);
 
 		std::cout << "# Returning bnode" << std::endl;
+		std::cout << "c: (" << c.x << ", " << c.y << ")" << std::endl;
+		std::cout << "ci: (" << vertices[0].x << ", " << vertices[0].y << ")" << std::endl;
+		std::cout << "cm: (" << vertices[median].x << ", " << vertices[median].y << ")" << std::endl;
+		std::cout << "cj: (" << vertices[vertices.size() -1].x << ", " << vertices[vertices.size() - 1].y << ")" << std::endl;
 		return b;
 	}
 }
@@ -287,20 +299,21 @@ bool ExampleApp::Open()
 			if(innerPoints.size() > 0) 
 			{
 				glm::vec3 c = this->innerPoints[0];
+				std::cout << "~~ Initial fan triangulation /w (" << c.x << ", " << c.y << ")" << std::endl;
 				tree = buildTree(c, this->hull, nullptr);
 
 				for(int i = 1; i < innerPoints.size(); i++)
 				{
-					std::cout << "** Inserting to tree..." << std::endl;
+					std::cout << "** Inserting (" << innerPoints[i].x << ", " << innerPoints[i].y << ") to tree..." << std::endl;
 					tree->insert(innerPoints[i]);
 				}
 
 				this->triangles = tree->getTriangles();
-				std::cout << "Triangles size: " << triangles.size() << std::endl;
+/* 				std::cout << "Triangles size: " << triangles.size() << std::endl;
 				for(int i = 0; i < triangles.size(); i++)
 				{
 					std::cout << "(" << triangles[i].x << ", " << triangles[i].y << ")" << std::endl; 
-				}
+				} */
 			}
 		} 
 		else if (key == GLFW_KEY_P && action == GLFW_PRESS)

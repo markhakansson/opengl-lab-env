@@ -44,26 +44,55 @@ public:
 	{
 		std::cout << "===== BNODE =====" << std::endl;
 		std::cout << "@BNODE: Inside BNODE!" << std::endl;
+		std::cout << "c: (" << c.x << ", " << c.y << ")" << std::endl;
+		std::cout << "ci: (" << ci.x << ", " << ci.y << ")" << std::endl;
+		std::cout << "cm: (" << cm.x << ", " << cm.y << ")" << std::endl;
+		std::cout << "cj: (" << cj.x << ", " << cj.y << ")" << std::endl;
 		// right of c->cm goto left subtree
 		if (cross(c, cm, p) < 0)
 		{
-			std::cout << "@BNODE: Inserting to left child..." << std::endl;
-			Node *tmp = left->insert(p);
-			if (tmp != nullptr)
+			if (cross(cj, cm, p) < 0) {
+				std::cout << "@BNODE: Inserting to left child..." << std::endl;
+				Node *tmp = left->insert(p);
+				if (tmp != nullptr)
+				{
+					std::cout << "@BNODE: Changing left child to new..." << std::endl;
+					left = tmp;
+				}
+			}
+			else if (cross(cj, cm, p) > 0)
 			{
-				std::cout << "@BNODE: Changing left child to new..." << std::endl;
-				left = tmp;
+				std::cout << "@BNODE: Inserting to right child..." << std::endl;
+				Node *tmp = right->insert(p);
+				if (tmp != nullptr)
+				{
+					std::cout << "@BNODE: Changing right child to new..." << std::endl;
+					right = tmp;
+				}				
 			}
 		}
 		// left of c->cm goto right subtree
 		else if (cross(c, cm, p) > 0)
 		{
-			std::cout << "@BNODE: Inserting to right child..." << std::endl;
-			Node *tmp = right->insert(p);
-			if (tmp != nullptr)
+			if (cross(ci, cm, p) > 0)
 			{
-				std::cout << "@BNODE: Changing right child to new..." << std::endl;
-				right = tmp;
+				std::cout << "@BNODE: Inserting to right child..." << std::endl;
+				Node *tmp = right->insert(p);
+				if (tmp != nullptr)
+				{
+					std::cout << "@BNODE: Changing right child to new..." << std::endl;
+					right = tmp;
+				}
+			}
+			else if (cross(ci, cm, p) < 0)
+			{
+				std::cout << "@BNODE: Inserting to left child..." << std::endl;
+				Node *tmp = left->insert(p);
+				if (tmp != nullptr)
+				{
+					std::cout << "@BNODE: Changing left child to new..." << std::endl;
+					left = tmp;
+				}
 			}
 		}
 		// on line
@@ -205,7 +234,7 @@ public:
 					right = tmp2;
 				}
 			}
-		} 
+		}
 		// on line c->cj
 		else if (cross(c, cj, p) == 0)
 		{
@@ -214,11 +243,11 @@ public:
 			Node *tmp2 = right->insert(p);
 			if (tmp1 != nullptr && tmp2 != nullptr)
 			{
-				std::cout << "@TNODE: Changing mid and right childs to new..." << std::endl;	
+				std::cout << "@TNODE: Changing mid and right childs to new..." << std::endl;
 				mid = tmp1;
-				right = tmp2;			
+				right = tmp2;
 			}
-		}	
+		}
 		// on line c->cm
 		else if (cross(c, cm, p) == 0)
 		{
@@ -227,7 +256,7 @@ public:
 			Node *tmp2 = left->insert(p);
 			if (tmp1 != nullptr && tmp2 != nullptr)
 			{
-				std::cout << "@TNODE: Changing mid and left childs to new..." << std::endl;	
+				std::cout << "@TNODE: Changing mid and left childs to new..." << std::endl;
 				mid = tmp1;
 				left = tmp2;
 			}
@@ -251,19 +280,18 @@ public:
 		std::vector<glm::vec3> triangle;
 		triangle.insert(triangle.end(), c);
 		triangle.insert(triangle.end(), ci);
-		
+
 		triangle.insert(triangle.end(), ci);
 		triangle.insert(triangle.end(), ci1);
-		
+
 		triangle.insert(triangle.end(), ci1);
 		triangle.insert(triangle.end(), c);
-
 
 		std::cout << "#### Printing triangle ####" << std::endl;
 		std::cout << "c: (" << c.x << ", " << c.y << ")" << std::endl;
 		std::cout << "ci: (" << ci.x << ", " << ci.y << ")" << std::endl;
 		std::cout << "ci1: (" << ci1.x << ", " << ci1.y << ")" << std::endl;
-		
+
 		return triangle;
 	}
 
@@ -279,7 +307,8 @@ public:
 		if (cross(c, ci, p) == 0)
 		{
 			std::cout << "Point on line c->ci!" << std::endl;
-			BNode *b = new BNode(p, c, ci, ci1, this->parent);
+			//BNode *b = new BNode(p, c, ci, ci1, this->parent);
+			BNode *b = new BNode(p, ci, ci1, c, this->parent);
 			Leaf *l1 = new Leaf(p, ci, ci1, b);
 			Leaf *l2 = new Leaf(p, ci1, c, b);
 			b->left = l1;
@@ -289,6 +318,7 @@ public:
 		else if (cross(c, ci1, p) == 0)
 		{
 			std::cout << "Point on line c->ci1!" << std::endl;
+			//BNode *b = new BNode(p, c, ci, ci1, this->parent);
 			BNode *b = new BNode(p, c, ci, ci1, this->parent);
 			Leaf *l1 = new Leaf(p, c, ci, b);
 			Leaf *l2 = new Leaf(p, ci, ci1, b);
@@ -299,7 +329,8 @@ public:
 		else if (cross(ci, ci1, p) == 0)
 		{
 			std::cout << "Point on line ci->ci1!" << std::endl;
-			BNode *b = new BNode(p, c, ci, ci1, this->parent);
+			//BNode *b = new BNode(p, c, ci, ci1, this->parent);
+			BNode *b = new BNode(p, ci1, c, ci, this->parent);
 			Leaf *l1 = new Leaf(p, ci1, c, b);
 			Leaf *l2 = new Leaf(p, c, ci, b);
 			b->left = l1;
