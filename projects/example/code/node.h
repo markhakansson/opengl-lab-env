@@ -48,11 +48,129 @@ public:
 		std::cout << "ci: (" << ci.x << ", " << ci.y << ")" << std::endl;
 		std::cout << "cm: (" << cm.x << ", " << cm.y << ")" << std::endl;
 		std::cout << "cj: (" << cj.x << ", " << cj.y << ")" << std::endl;
+
+		// right of c->cm, left of c->cj = first sector. goto left subtree
+
+		std::cout << "~~ Calculating cross products ~~" << std::endl;
+		std::cout << "cross(c, cm, p) = " << cross(c, cm, p) << std::endl;
+		std::cout << "cross(c, ci, p) = " << cross(c, ci, p) << std::endl;
+		std::cout << "cross(c, cj, p) = " << cross(c, cj, p) << std::endl;
+		std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
+
+		if (cross(c, cm, p) < 0 && cross(c, ci, p) > 0)
+		{
+			std::cout << "@BNODE: Right of c->cm. Left of c->ci. Inserting to left child..." << std::endl;
+			Node *tmp = left->insert(p);
+			if (tmp != nullptr)
+			{
+				std::cout << "@BNODE: Changing left child to new..." << std::endl;
+				left = tmp;
+			}
+		}
+		// left of c->cm goto right subtree
+		else if (cross(c, cm, p) > 0 && cross(c, cj, p) < 0)
+		{
+			std::cout << "@BNODE: Left of c->cm. Right of c->cj. Inserting to right child..." << std::endl;
+			Node *tmp = right->insert(p);
+			if (tmp != nullptr)
+			{
+				std::cout << "@BNODE: Changing right child to new..." << std::endl;
+				right = tmp;
+			}
+		}
+		else if (cross(c, cm, p) < 0 && cross(c, ci, p) < 0)
+		{
+			std::cout << "@BNODE: Right of c->cm. Right of c->ci. Inserting to left child..." << std::endl;
+			Node *tmp = left->insert(p);
+			if (tmp != nullptr)
+			{
+				std::cout << "@BNODE: Changing right child to new..." << std::endl;
+				left = tmp;
+			}
+		}
+		else if (cross(c, cm, p) > 0 && cross(c, cj, p) > 0)
+		{
+			std::cout << "@BNODE: Left of c->cm. Left of c->cj. Inserting to right child..." << std::endl;
+			Node *tmp = right->insert(p);
+			if (tmp != nullptr)
+			{
+				std::cout << "@BNODE: Changing right child to new..." << std::endl;
+				right = tmp;
+			}
+		}
+		// on line c->cm
+		else if (cross(c, cm, p) == 0)
+		{
+			std::cout << "@BNODE: Point is on line c->cm, inserting to both childs..." << std::endl;
+			Node *tmp1 = left->insert(p);
+			Node *tmp2 = right->insert(p);
+
+			if (tmp1 != nullptr && tmp2 != nullptr)
+			{
+				std::cout << "@BNODE: Changing both childs to new..." << std::endl;
+				left = tmp1;
+				right = tmp2;
+			}
+		}
+		// on line c->ci
+		else if (cross(c, ci, p) == 0)
+		{
+			if (ci == cj)
+			{
+				std::cout << "@BNODE: Point is on line c->ci, inserting to both childs..." << std::endl;
+				Node *tmp1 = left->insert(p);
+				Node *tmp2 = right->insert(p);
+
+				if (tmp1 != nullptr && tmp2 != nullptr)
+				{
+					std::cout << "@BNODE: Changing both childs to new..." << std::endl;
+					left = tmp1;
+					right = tmp2;
+				}
+			}
+			else
+			{
+				std::cout << "@BNODE: Point is on line c->ci, inserting to left child..." << std::endl;
+				Node *tmp = left->insert(p);
+				if(tmp != nullptr)
+				{
+					std::cout << "@BNODE: Changing left child to new..." << std::endl;
+					left = tmp;
+				}
+			}
+		}
+		// on line c->cj
+		else if (cross(c, cj, p) == 0)
+		{
+			if (ci == ci)
+			{
+				std::cout << "@BNODE: Point is on line c->cj, inserting to both childs..." << std::endl;
+				Node *tmp1 = left->insert(p);
+				Node *tmp2 = right->insert(p);
+
+				if (tmp1 != nullptr && tmp2 != nullptr)
+				{
+					std::cout << "@BNODE: Changing both childs to new..." << std::endl;
+					left = tmp1;
+					right = tmp2;
+				}				
+			}
+			else 
+			{
+				std::cout << "@BNODE: Point is on line c->cj, inseritng to right child..." << std::endl;
+				Node *tmp = right->insert(p);
+				if(tmp != nullptr)
+				{
+					std::cout << "@BNODE: Changing right child to new..." << std::endl;
+					right = tmp;
+				}
+			}
+		}
 		// right of c->cm goto left subtree
-		if (cross(c, cm, p) < 0)
+		/* 		if (cross(c, cm, p) < 0)
 		{
 			if (cross(cj, cm, p) < 0) {
-				std::cout << "@BNODE: Inserting to left child..." << std::endl;
+				std::cout << "@BNODE: Right of cj->cm. Inserting to left child..." << std::endl;
 				Node *tmp = left->insert(p);
 				if (tmp != nullptr)
 				{
@@ -62,7 +180,7 @@ public:
 			}
 			else if (cross(cj, cm, p) > 0)
 			{
-				std::cout << "@BNODE: Inserting to right child..." << std::endl;
+				std::cout << "@BNODE: Left of cj->cm. Inserting to right child..." << std::endl;
 				Node *tmp = right->insert(p);
 				if (tmp != nullptr)
 				{
@@ -76,7 +194,7 @@ public:
 		{
 			if (cross(ci, cm, p) > 0)
 			{
-				std::cout << "@BNODE: Inserting to right child..." << std::endl;
+				std::cout << "@BNODE: Left of ci->cm. Inserting to right child..." << std::endl;
 				Node *tmp = right->insert(p);
 				if (tmp != nullptr)
 				{
@@ -84,16 +202,16 @@ public:
 					right = tmp;
 				}
 			}
-			else if (cross(ci, cm, p) < 0)
+ 			else if (cross(ci, cm, p) < 0)
 			{
-				std::cout << "@BNODE: Inserting to left child..." << std::endl;
+				std::cout << "@BNODE: Right of ci->cm. Inserting to left child..." << std::endl;
 				Node *tmp = left->insert(p);
 				if (tmp != nullptr)
 				{
 					std::cout << "@BNODE: Changing left child to new..." << std::endl;
 					left = tmp;
 				}
-			}
+			} 
 		}
 		// on line
 		else if (cross(c, cm, p) == 0)
@@ -108,7 +226,7 @@ public:
 				left = tmp1;
 				right = tmp2;
 			}
-		}
+		} */
 		return nullptr;
 	}
 };
