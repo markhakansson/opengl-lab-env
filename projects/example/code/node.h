@@ -80,12 +80,12 @@ public:
 		}
 		else if (cross(c, cm, p) < 0 && cross(c, ci, p) < 0)
 		{
-			std::cout << "@BNODE: Right of c->cm. Right of c->ci. Inserting to left child..." << std::endl;
-			Node *tmp = left->insert(p);
+			std::cout << "@BNODE: Right of c->cm. Right of c->ci. Inserting to right child..." << std::endl;
+			Node *tmp = right->insert(p);
 			if (tmp != nullptr)
 			{
 				std::cout << "@BNODE: Changing right child to new..." << std::endl;
-				left = tmp;
+				right = tmp;
 			}
 		}
 		else if (cross(c, cm, p) > 0 && cross(c, cj, p) > 0)
