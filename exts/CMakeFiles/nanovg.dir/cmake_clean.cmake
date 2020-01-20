@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/nanovg.dir/nanovg/src/nanovg.c.o"
-  "libnanovg.pdb"
   "libnanovg.a"
+  "libnanovg.pdb"
 )
 
 # Per-language clean rules from dependency scanning.

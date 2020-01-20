@@ -1,8 +1,8 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/core.dir/app.cc.o"
   "CMakeFiles/core.dir/__/config.cc.o"
-  "libcore.pdb"
+  "CMakeFiles/core.dir/app.cc.o"
   "libcore.a"
+  "libcore.pdb"
 )
 
 # Per-language clean rules from dependency scanning.

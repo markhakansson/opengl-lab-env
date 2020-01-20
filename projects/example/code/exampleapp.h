@@ -34,8 +34,12 @@ private:
 	GLuint vertexShader;
 	GLuint pixelShader;
 	GLuint buffer;
+	GLuint vao;
+	GLuint vbo;
 	GLuint ibo;
 	GLsizei no_of_points;
+
+	std::vector<GLfloat> vertexBuffer;
 
 	std::vector<glm::vec3> points;
 	std::vector<glm::vec3> hull;

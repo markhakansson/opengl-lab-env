@@ -41,8 +41,12 @@ const GLchar *ps =
 	"out vec4 Color;\n"
 	"void main()\n"
 	"{\n"
-	"	Color = vec4(1.0, 0.0, 0.0, 1.0);\n"
+	"	Color = color;\n"
 	"}\n";
+
+const glm::vec4 RED_COLOR = glm::vec4(1.0f, 0.0f, 0.0f, 1.0f);
+const glm::vec4 GREEN_COLOR = glm::vec4(0.0f, 1.0f, 0.0f, 1.0f);
+const glm::vec4 BLUE_COLOR = glm::vec4(0.0f, 0.0f, 1.0f, 1.0f);
 
 /**
  * 	If the points makes a clockwise turn the result will be negative.
@@ -151,8 +155,35 @@ Node *buildTree(glm::vec3 c, std::vector<glm::vec3> vertices, Node *parent)
 	}
 }
 
-void triangleSoup(Node *tree)
+/**
+ *  Adds colors to a vertex. Basically appends vertices with a vec4 color.
+ */
+glm::vec4 colorVertex(glm::vec3 vertex) 
 {
+	return BLUE_COLOR;
+}
+
+/**
+ * Returns a vector of GLfloats with colors added in between.
+ */ 
+std::vector<GLfloat> addColorToVertices(std::vector<glm::vec3> vertices) 
+{
+	std::vector<GLfloat> floats; 
+
+	for(int i = 0; i < vertices.size(); i++)
+	{
+		floats.push_back(vertices[i].x);
+		floats.push_back(vertices[i].y);
+		floats.push_back(vertices[i].z);
+
+		glm::vec4 color = colorVertex(vertices[i]);
+		floats.push_back(color.r);
+		floats.push_back(color.g);
+		floats.push_back(color.b);
+		floats.push_back(color.a);
+	}
+
+	return floats;
 }
 
 using namespace Display;
@@ -309,11 +340,7 @@ bool ExampleApp::Open()
 				}
 
 				this->triangles = tree->getTriangles();
-/* 				std::cout << "Triangles size: " << triangles.size() << std::endl;
-				for(int i = 0; i < triangles.size(); i++)
-				{
-					std::cout << "(" << triangles[i].x << ", " << triangles[i].y << ")" << std::endl; 
-				} */
+				this->vertexBuffer = addColorToVertices(this->triangles);
 			}
 		} 
 		else if (key == GLFW_KEY_P && action == GLFW_PRESS)
@@ -408,6 +435,7 @@ void ExampleApp::Run()
 
 		glUseProgram(this->program);
 		glEnableVertexAttribArray(0);
+		glEnableVertexAttribArray(1);
 
 		// draw points
 		glBindBuffer(GL_ARRAY_BUFFER, this->buffer);
@@ -419,21 +447,8 @@ void ExampleApp::Run()
 		glDrawArrays(GL_POINTS, 0, points.size());
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 
- 		// draw hull
-/* 		if (hull.size() != 0)
-		{
-			glBindBuffer(GL_ARRAY_BUFFER, this->buffer);
-			glBufferData(GL_ARRAY_BUFFER, hull.size() * sizeof(glm::vec3), hull.data(), GL_STATIC_DRAW);
-			glBindBuffer(GL_ARRAY_BUFFER, 0);
-
-			glBindBuffer(GL_ARRAY_BUFFER, this->buffer);
-			glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL); // point
-			glDrawArrays(GL_LINE_LOOP, 0, hull.size());
-			glBindBuffer(GL_ARRAY_BUFFER, 0);
-		} 
- */
 		// draw triangulation
-		if (triangles.size() != 0)
+/* 		if (triangles.size() != 0)
 		{
 			glBindBuffer(GL_ARRAY_BUFFER, this->buffer);
 			glBufferData(GL_ARRAY_BUFFER, triangles.size() * sizeof(glm::vec3), triangles.data(), GL_STATIC_DRAW);
@@ -441,6 +456,19 @@ void ExampleApp::Run()
 
 			glBindBuffer(GL_ARRAY_BUFFER, this->buffer);
 			glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL); // point
+			glDrawArrays(GL_LINES, 0, triangles.size());
+			glBindBuffer(GL_ARRAY_BUFFER, 0);
+		} */
+
+		if (vertexBuffer.size() != 0)
+		{
+			glBindBuffer(GL_ARRAY_BUFFER, this->buffer);
+			glBufferData(GL_ARRAY_BUFFER, vertexBuffer.size() * sizeof(GLfloat), vertexBuffer.data(), GL_STATIC_DRAW);
+			glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+			glBindBuffer(GL_ARRAY_BUFFER, this->buffer);
+			glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 7, NULL); // point
+			glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 7, (GLvoid*)(sizeof(GLfloat) * 3)); // color
 			glDrawArrays(GL_LINES, 0, triangles.size());
 			glBindBuffer(GL_ARRAY_BUFFER, 0);
 		}
